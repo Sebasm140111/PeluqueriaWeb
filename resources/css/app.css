@@ -1,3 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap');
+:root { --font-sans: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  @keyframes so-fade-up {
+    from { opacity: .0; transform: translateY(12px); }
+    to   { opacity: 1;  transform: translateY(0); }
+  }
+
+  /* Por defecto, visible (sin JS) */
+  .reveal { opacity: 1; transform: none; }
+  .revealed { opacity: 1; }
+
+  /* Si JS está activo, añadimos .js al <html> y recién ahí ocultamos */
+  .js .reveal { opacity: 0; transform: translateY(12px); }
+  .js .revealed { animation: so-fade-up .6s ease-out both; }
+}
+html { font-family: var(--font-sans); }
+
